@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import RepoList from "../repos/RepoList";
 import Spinner from "../layouts/Spinner";
 import React, { Component, Fragment } from "react";
 
@@ -7,6 +8,7 @@ class User extends Component {
   static propTypes = {
     user: PropTypes.object.isRequired,
     loading: PropTypes.bool.isRequired,
+    repos: PropTypes.array.isRequired,
     getUser: PropTypes.func.isRequired,
     getUserRepos: PropTypes.func.isRequired,
   };
@@ -18,7 +20,7 @@ class User extends Component {
   }
 
   render() {
-    const { loading, user } = this.props;
+    const { loading, user, repos } = this.props;
     const {
       name,
       login,
@@ -106,6 +108,7 @@ class User extends Component {
           <div className="badge badge-light">Public Repos: {public_repos}</div>
           <div className="badge badge-dark">Public Gists: {public_gists}</div>
         </div>
+        <RepoList repos={repos} />
       </Fragment>
     );
   }
