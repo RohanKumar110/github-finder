@@ -15,7 +15,7 @@ function UserList(props) {
   );
 }
 
-UserList.protoTypes = {
+UserList.propTypes = {
   loading: PropTypes.bool.isRequired,
   users: PropTypes.array.isRequired,
 };

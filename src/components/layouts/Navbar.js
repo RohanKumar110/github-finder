@@ -26,7 +26,7 @@ Navbar.defaultProps = {
   icon: "fab fa-github",
 };
 
-Navbar.protoTypes = {
+Navbar.propTypes = {
   title: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
 };

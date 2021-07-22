@@ -4,14 +4,17 @@ import Spinner from "../layouts/Spinner";
 import React, { Component, Fragment } from "react";
 
 class User extends Component {
-  static protoTypes = {
-    loading: PropTypes.bool.isRequired,
+  static propTypes = {
     user: PropTypes.object.isRequired,
+    loading: PropTypes.bool.isRequired,
     getUser: PropTypes.func.isRequired,
+    getUserRepos: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
-    this.props.getUser(this.props.match.params.login);
+    const { login } = this.props.match.params;
+    this.props.getUser(login);
+    this.props.getUserRepos(login);
   }
 
   render() {

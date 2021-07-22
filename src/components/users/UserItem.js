@@ -21,7 +21,7 @@ function UserItem(props) {
   );
 }
 
-UserItem.protoTypes = {
+UserItem.propTypes = {
   user: PropTypes.object.isRequired,
 };
 
