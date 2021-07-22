@@ -1,10 +1,12 @@
 import "../styles/App.css";
 import axios from "axios";
-import Alert from "./layouts/Alert";
+import About from "./pages/About";
 import Search from "./users/Search";
-import React, { Component } from "react";
+import Alert from "./layouts/Alert";
 import Navbar from "./layouts/Navbar";
 import UserList from "./users/UserList";
+import { Switch, Route } from "react-router-dom";
+import React, { Component, Fragment } from "react";
 
 class App extends Component {
   state = {
@@ -42,13 +44,24 @@ class App extends Component {
         <Navbar />
         <div className="container">
           <Alert alert={alert} />
-          <Search
-            setAlert={this.setAlert}
-            searchUsers={this.searchUsers}
-            clearUsers={this.clearUsers}
-            showClear={users.length > 0 ? true : false}
-          />
-          <UserList loading={loading} users={users} />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <Fragment>
+                  <Search
+                    setAlert={this.setAlert}
+                    searchUsers={this.searchUsers}
+                    clearUsers={this.clearUsers}
+                    showClear={users.length > 0 ? true : false}
+                  />
+                  <UserList loading={loading} users={users} />
+                </Fragment>
+              )}
+            />
+            <Route exact path="/about" component={About} />
+          </Switch>
         </div>
       </div>
     );
