@@ -1,5 +1,6 @@
 import githubReducer from "./GithubReducer";
 import { useReducer, createContext } from "react";
+import { GET_USERS, CLEAR_USERS, SET_LOADING } from "../types";
 
 const GithubContext = createContext();
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
@@ -14,7 +15,7 @@ export const GithubProvider = ({ children }) => {
   const [state, dispatch] = useReducer(githubReducer, initialState);
 
   const setLoading = () => {
-    dispatch({ type: "SET_LOADING" });
+    dispatch({ type: SET_LOADING });
   };
 
   const searchUsers = async (text) => {
@@ -31,11 +32,11 @@ export const GithubProvider = ({ children }) => {
       },
     });
     const { items } = await response.json();
-    dispatch({ type: "GET_USERS", payload: items });
+    dispatch({ type: GET_USERS, payload: items });
   };
 
   const clearUsers = () => {
-    dispatch({ type: "CLEAR_USERS" });
+    dispatch({ type: CLEAR_USERS });
   };
 
   return (
