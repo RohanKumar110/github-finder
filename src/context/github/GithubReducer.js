@@ -1,20 +1,12 @@
 import {
-  GET_USER,
   GET_USERS,
   CLEAR_USERS,
-  GET_REPOS,
   SET_LOADING,
+  GET_USER_AND_REPOS,
 } from "../types";
 
 function githubReducer(state, action) {
   switch (action.type) {
-    case GET_USER:
-      return {
-        ...state,
-        user: action.payload,
-        isLoading: false,
-      };
-
     case GET_USERS:
       return {
         ...state,
@@ -22,17 +14,18 @@ function githubReducer(state, action) {
         isLoading: false,
       };
 
+    case GET_USER_AND_REPOS:
+      return {
+        ...state,
+        user: action.payload.user,
+        repos: action.payload.repos,
+        isLoading: false,
+      };
+
     case CLEAR_USERS:
       return {
         ...state,
         users: [],
-      };
-
-    case GET_REPOS:
-      return {
-        ...state,
-        repos: action.payload,
-        loading: false,
       };
 
     case SET_LOADING:
