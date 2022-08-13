@@ -1,4 +1,5 @@
 import React from "react";
+import User from "./pages/User";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
@@ -21,6 +22,7 @@ function App() {
               <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/about" element={<About />} />
+                <Route path="/user/:login" element={<User />} />
                 <Route exact path="/notfound" element={<NotFound />} />
                 <Route path="/*" element={<NotFound />} />
               </Routes>
