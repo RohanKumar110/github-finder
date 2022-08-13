@@ -6,3 +6,5 @@ export const SET_LOADING = "SET_LOADING";
 //ALERTS
 export const SET_ALERT = "SET_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";
+// REPOS
+export const GET_REPOS = "GET_REPOS";

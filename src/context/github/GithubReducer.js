@@ -1,4 +1,10 @@
-import { GET_USER, GET_USERS, CLEAR_USERS, SET_LOADING } from "../types";
+import {
+  GET_USER,
+  GET_USERS,
+  CLEAR_USERS,
+  GET_REPOS,
+  SET_LOADING,
+} from "../types";
 
 function githubReducer(state, action) {
   switch (action.type) {
@@ -20,6 +26,13 @@ function githubReducer(state, action) {
       return {
         ...state,
         users: [],
+      };
+
+    case GET_REPOS:
+      return {
+        ...state,
+        repos: action.payload,
+        loading: false,
       };
 
     case SET_LOADING:

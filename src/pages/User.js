@@ -7,7 +7,7 @@ import { FaCodepen, FaStore, FaUserFriends, FaUsers } from "react-icons/fa";
 
 function User() {
   const params = useParams();
-  const { user, isLoading, getUser } = useContext(GithubContext);
+  const { user, repos,isLoading, getUser,getUserRepos } = useContext(GithubContext);
   const {
     name,
     type,
@@ -27,6 +27,7 @@ function User() {
 
   useEffect(() => {
     getUser(params.login);
+    getUserRepos(params.login);
     // eslint-disable-next-line
   }, []);
 
