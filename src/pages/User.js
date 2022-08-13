@@ -4,12 +4,13 @@ import { useParams } from "react-router-dom";
 import Spinner from "../components/layout/Spinner";
 import RepoList from "../components/repos/RepoList";
 import GithubContext from "../context/github/GithubContext";
+import { GET_USER, GET_REPOS, SET_LOADING } from "../context/types";
+import { getUser, getUserRepos } from "../context/github/GithubActions";
 import { FaCodepen, FaStore, FaUserFriends, FaUsers } from "react-icons/fa";
 
 function User() {
   const params = useParams();
-  const { user, repos, isLoading, getUser, getUserRepos } =
-    useContext(GithubContext);
+  const { user, repos, isLoading, dispatch } = useContext(GithubContext);
   const {
     name,
     type,
@@ -28,10 +29,15 @@ function User() {
   } = user;
 
   useEffect(() => {
-    getUser(params.login);
-    getUserRepos(params.login);
-    // eslint-disable-next-line
-  }, []);
+    dispatch({ type: SET_LOADING });
+    const getUserData = async () => {
+      const userData = await getUser(params.login);
+      dispatch({ type: GET_USER, payload: userData });
+      const userRepoData = await getUserRepos(params.login);
+      dispatch({ type: GET_REPOS, payload: userRepoData });
+    };
+    getUserData();
+  }, [dispatch, params.login]);
 
   if (isLoading) {
     return <Spinner />;

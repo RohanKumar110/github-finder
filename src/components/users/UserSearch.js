@@ -1,17 +1,17 @@
 import React, { useState, useContext } from "react";
-import { GET_USERS, SET_LOADING } from "../../context/types";
 import AlertContext from "../../context/alert/AlertContext";
-import { searchUsers } from "../../context/github/GithubActions";
 import GithubContext from "../../context/github/GithubContext";
+import { searchUsers } from "../../context/github/GithubActions";
+import { GET_USERS, SET_LOADING, CLEAR_USERS } from "../../context/types";
 
 function UserSearch() {
   const [text, setText] = useState("");
   const { setAlert } = useContext(AlertContext);
-  const { users, clearUsers, dispatch } = useContext(GithubContext);
+  const { users, dispatch } = useContext(GithubContext);
 
   const handleTextChange = (e) => setText(e.target.value);
 
-  const handleClearClick = () => clearUsers();
+  const handleClearClick = () => dispatch({ type: CLEAR_USERS });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
